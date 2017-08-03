@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<title>R.I.P. Paint</title>
+		<link rel="stylesheet" href="css/paint.css">
+	</head>
+	<body>
+		<section class="window">
+			<section class="top-bar">untitled - R.I.P. Paint</section>
+			<section class="border">
+				<section class="file-bar">
+					<ul class="menu">
+						<li>File</li>
+						<li>Edit</li>
+						<li>View</li>
+						<li>Image</li>
+						<li>Colors</li>
+						<li>Help</li>
+					</ul>
+				</section>
+				<section class="side-bar">
+					<ul class="paint-buttons" id="paint-tools">
+						<li class="paint-button"
+							v-for="(tool, toolName) in tools"
+							v-bind:title="toolName"
+							v-bind:id="toolName + '-button'"
+							v-bind:class="{ 'active-paint-button': toolName == currentToolName }"
+							v-on:click="changeTool(toolName)">
+								<span>{{ toolName }}</span>
+							</li>
+					</ul>
+				</section>
+				<section class="paintview" id="canvases">
+					<canvas class="canvas" id="canvas" width="500px" height="500px"></canvas>
+					<canvas class="canvas" id="shadow-canvas" width="500px" height="500px"></canvas>
+				</section>
+				<section class="bottom-bar">
+					<section class="color-bar" id="color-bar">
+						<section class="colors-selected"></section>
+						<ul class="color-palette">
+							<li class="color color-border"
+								v-for="code in codes"
+								v-bind:style="{background: code}"
+								v-on:click="current = code"></li>
+						</ul>
+					</section>
+				</section>
+			</section>
+		</section>
+		<script src="js/vue.min.js"></script>
+		<script src="js/paint.js"></script>
+	</body>
+</html>

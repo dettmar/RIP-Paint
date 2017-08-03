@@ -1,0 +1,223 @@
+* {
+	box-sizing: border-box;
+}
+html, body {
+	margin: 0;
+	padding: 0;
+	font-family: Tahoma;
+	-webkit-font-smoothing: none;
+	-moz-osx-font-smoothing: none;
+	font-size: 12px;
+}
+.window {
+	height: 100%;
+	width: 100%;
+	background: #bdbdbd;
+	border: 1px solid white;
+	border-bottom-color: #7b7b7b;
+	border-right-color: #7b7b7b;
+}
+.top-bar {
+	background: #00007B;
+	height: 18px;
+	color: white;
+	margin: 2px;
+	line-height: 18px;
+	padding-left: 18px;
+	letter-spacing: 1px;
+	font-weight: bold;
+}
+.top-bar:before, .top-bar:after {
+	content: "";
+	background: transparent url(../img/logo.png) 0 0 no-repeat;
+	height: 18px;
+	z-index: 2;
+	top: 4px;
+	position: absolute;
+	image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated; /* Chrome */
+    image-rendering: optimize-contrast;
+}
+.top-bar:before {
+	background-image: url(../img/logo.png);
+	width: 30px;
+	left: 4px;
+}
+.top-bar:after {
+	width: 73px;
+	left: auto;
+	right: 0;
+	background: transparent url(../img/exit.png) 0 0 no-repeat;
+}
+.file-bar {
+	height: 21px;
+	width: 100%;
+	letter-spacing: 1px;
+}
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+li {
+	float: left;
+}
+.file-bar .menu {
+	height: 100%;
+}
+.file-bar .menu li {
+	line-height: 21px;
+	margin-left: 10px;
+}
+.border {
+	height: 100%;
+	width: 100%;
+}
+.side-bar {
+	width: 58px;
+	height: calc(100% - 21px - 47px);
+	float: left;
+
+}
+.paint-buttons {
+	width: 52px;
+	background: black;
+	float: left;
+}
+.paint-button {
+	background: #bdbdbd;
+	width: 25px;
+	height: 25px;
+	margin: 0 1px 1px 0;
+	border: 1px solid;
+	border-top-color: white;
+	border-right-color: #7b7b7b;
+	border-bottom-color: #7b7b7b;
+	border-left-color: white;
+	cursor: pointer;
+}
+.paint-button.active-paint-button {
+	background: url(active-button.png) repeat;
+	border-top-color: #7b7b7b;
+	border-left-color: #7b7b7b;
+	border-bottom-color: #bdbdbd;
+	border-right-color: #bdbdbd;
+}
+.paint-button span {
+	width: 100%;
+	height: 100%;
+	background: transparent url(../img/tools.gif) no-repeat;
+	text-indent: -9999em;
+	display: block;
+	image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated; /* Chrome */
+    image-rendering: optimize-contrast;
+}
+#PencilTool-button span {
+	background-position: 0 calc(-25px * 3);
+}
+#EraseTool-button span {
+	background-position: 0 calc(-25px * 1);
+}
+#RectangleTool-button span {
+	background-position: 0 calc(-25px * 6);
+}
+#EllipseTool-button span {
+	background-position: 0 calc(-25px * 7);
+}
+.bottom-bar {
+	background: #bdbdbd;
+	width: 100%;
+	height: 47px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.color-bar {
+	height: 32px;
+	width: 50%;
+	background: white;
+}
+.colors-selected {
+	background: transparent url(../img/active-button.png) repeat;
+	width: 30px;
+	height: 30px;
+	float: left;
+}
+.color-border {
+	border: 1px solid #7B7B7B;
+	border-right-color: #BDBDBD;
+	border-bottom-color: #BDBDBD;
+}
+.color-palette {
+	width: calc(15px * 16);
+}
+.color {
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+}
+
+.paintview {
+	width: calc(100% - 58px);
+	background: #848484;
+	float: right;
+	padding: 10px;
+	height: calc(100% - 84px);
+}
+.canvas {
+	background: transparent;
+	height: 500px;
+	width: 500px;
+}
+#canvas {
+	background: white;
+}
+#shadow-canvas {
+	position: absolute;
+	top: 54px;
+	left: 69px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	.canvas {
+		transform: scale(.5, .5);
+		transform-origin: 0 0;
+	}
+}
+
+/*#000000
+#7B7B7B
+#7B0000
+#7B7B00
+#007B00
+#007B7B
+#00007B
+#7B017B
+#7B7B39
+#003939
+#007BFF
+#00397B
+#3900FF
+#7B3900
+
+#ffffff
+#BDBDBD
+#FF0000
+#FFFF02
+#00FF02
+#01FFFF
+#0000FF
+#FF00FF
+#FFFF7B
+#00FF7B
+#7BFFFF
+#7B7BFE
+#FF007B
+#FF7B39*/
