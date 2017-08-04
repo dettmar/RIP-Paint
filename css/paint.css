@@ -4,7 +4,7 @@
 html, body {
 	margin: 0;
 	padding: 0;
-	font-family: Tahoma;
+	font-family: Tahoma, Geneva, Verdana;
 	-webkit-font-smoothing: none;
 	-moz-osx-font-smoothing: none;
 	font-size: 12px;
@@ -100,7 +100,7 @@ li {
 	cursor: pointer;
 }
 .paint-button.active-paint-button {
-	background: url(active-button.png) repeat;
+	background: url(../img/active-button.png) repeat;
 	border-top-color: #7b7b7b;
 	border-left-color: #7b7b7b;
 	border-bottom-color: #bdbdbd;
