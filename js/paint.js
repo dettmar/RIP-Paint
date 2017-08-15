@@ -66,10 +66,13 @@ var PencilTool = new Vue({
 			console.log("Pencil beginDraw")
 			Canvas.shadowCtx.fillStyle = Colors.current;
 			this.hasMouseDown = true;
+			e.preventDefault();
 			this.draw(e);
 		},
 		draw: function(e) {
+			e.preventDefault();
 			if(!this.hasMouseDown) return;
+
 			var self = this;
 			Canvas.draw(function() {
 				Canvas.shadowCtx.fillRect(
@@ -81,6 +84,7 @@ var PencilTool = new Vue({
 			});
 		},
 		stopDraw: function(e) {
+			e.preventDefault();
 			Canvas.copy();
 			this.hasMouseDown = false;
 		},
@@ -123,6 +127,7 @@ var RectangleTool = new Vue({
 	},
 	methods: {
 		beginDraw: function(e) {
+			e.preventDefault();
 			Canvas.shadowCtx.fillStyle = "transparent";
 			Canvas.shadowCtx.strokeStyle = Colors.current;
 			Canvas.shadowCtx.lineWidth = RectangleTool.lineWidth;
@@ -130,8 +135,10 @@ var RectangleTool = new Vue({
 			RectangleTool.startY = Canvas.scale(Canvas.trim(e.pageY, false));
 			window.addEventListener("mousemove", RectangleTool.draw);
 			window.addEventListener("mouseup", RectangleTool.stopDraw);
+			RectangleTool.draw(e);
 		},
 		draw: function(e) {
+			e.preventDefault();
 			Canvas.draw(function() {
 				Canvas.clear()
 				Canvas.shadowCtx.strokeRect(
@@ -143,6 +150,7 @@ var RectangleTool = new Vue({
 			});
 		},
 		stopDraw: function(e) {
+			e.preventDefault();
 			Canvas.copy();
 			window.removeEventListener("mousemove", RectangleTool.draw);
 		},
@@ -171,6 +179,7 @@ var EllipseTool = new Vue({
 	},
 	methods: {
 		beginDraw: function(e) {
+			e.preventDefault();
 			Canvas.shadowCtx.fillStyle = "transparent";
 			Canvas.shadowCtx.strokeStyle = Colors.current;
 			Canvas.shadowCtx.lineWidth = EllipseTool.lineWidth;
@@ -180,9 +189,10 @@ var EllipseTool = new Vue({
 
 			window.addEventListener("mousemove", EllipseTool.draw);
 			window.addEventListener("mouseup", EllipseTool.stopDraw);
+			EllipseTool.draw(e);
 		},
 		draw: function(e) {
-
+			e.preventDefault();
 			var currX = Canvas.scale(Canvas.trim(e.pageX, true)),
 				currY = Canvas.scale(Canvas.trim(e.pageY, false)),
 				height = currY - EllipseTool.startY,
@@ -209,6 +219,7 @@ var EllipseTool = new Vue({
 			});
 		},
 		stopDraw: function(e) {
+			e.preventDefault();
 			Canvas.copy();
 			window.removeEventListener("mousemove", EllipseTool.draw);
 		},
