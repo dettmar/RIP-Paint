@@ -142,7 +142,6 @@ li {
 .color-bar {
 	height: 32px;
 	width: 50%;
-	background: white;
 }
 .colors-selected {
 	background: transparent url(../img/active-button.png) repeat;
