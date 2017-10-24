@@ -106,10 +106,50 @@ var PencilTool = new Vue({
 
 var EraseTool = new Vue({
 	el: "#erasetool",
+	data: {
+		name: "Pencil",
+		size: 10,
+		hasMouseDown: false
+	},
 	methods: {
-		beginDraw: function() {
-			Canvas.shadowCtx.fillStyle = "#ffffff";
+		beginDraw: function(e) {
+			console.log("Pencil beginDraw")
+			Canvas.shadowCtx.fillStyle = "white";
 			this.hasMouseDown = true;
+			e.preventDefault();
+			this.draw(e);
+		},
+		draw: function(e) {
+			e.preventDefault();
+			if(!this.hasMouseDown) return;
+
+			var self = this;
+			Canvas.draw(function() {
+				Canvas.shadowCtx.fillRect(
+					Canvas.scale(Canvas.trim(e.pageX, true)),
+					Canvas.scale(Canvas.trim(e.pageY, false)),
+					Canvas.scale(self.size),
+					Canvas.scale(self.size)
+				);
+			});
+		},
+		stopDraw: function(e) {
+			e.preventDefault();
+			Canvas.copy();
+			this.hasMouseDown = false;
+		},
+		activate: function() {
+			console.log("Pencil tool activated");
+			Canvas.ctx.fillRect(50, 50, 10, 10);
+			window.addEventListener("mousedown", this.beginDraw.bind(this));
+			window.addEventListener("mousemove", this.draw.bind(this));
+			window.addEventListener("mouseup", this.stopDraw.bind(this));
+		},
+		deactivate: function() {
+			console.log("Pencil deactivated");
+			window.removeEventListener("mousedown", this.beginDraw.bind(this));
+			window.removeEventListener("mousemove", this.draw.bind(this));
+			window.removeEventListener("mouseup", this.stopDraw.bind(this));
 		}
 	}
 });
